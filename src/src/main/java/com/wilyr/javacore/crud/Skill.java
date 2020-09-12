@@ -1,10 +1,10 @@
 package src.main.java.com.wilyr.javacore.crud;
 
-public class Skills {
+public class Skill {
     private String name;
-    private int id;
+    private long id;
 
-    public Skills(int id, String name) {
+    public Skill(long id, String name) {
         this.name = name;
         this.id = id;
     }
@@ -17,11 +17,11 @@ public class Skills {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
