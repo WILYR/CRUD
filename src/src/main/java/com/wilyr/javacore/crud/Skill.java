@@ -4,9 +4,8 @@ public class Skill {
     private String name;
     private long id;
 
-    public Skill(long id, String name) {
+    public Skill(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public String getName() {

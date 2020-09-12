@@ -9,13 +9,15 @@ import java.util.*;
 public class SkillsRepository {
 
     List<Skill> skillsRepository = new ArrayList<>();
+    private int id = 0;
 
     public List<Skill> getAll() {
         try (BufferedReader reader = new BufferedReader(new FileReader("skills.txt"))) {
             String line = reader.readLine();
             while (line != null) {
                 String[] lineSplit = line.split(",");
-                Skill skill = new Skill(Long.parseLong(lineSplit[0]), lineSplit[1]);
+                Skill skill = new Skill(lineSplit[1]);
+                skill.setId(Long.parseLong(lineSplit[0]));
                 skillsRepository.add(skill);
                 line = reader.readLine();
             }
@@ -27,6 +29,7 @@ public class SkillsRepository {
 
     public Skill save(Skill skill) {
         if (!skillsRepository.contains(skill.getId())) {
+            skill.setId(id++);
             skillsRepository.add(skill);
             try (FileWriter writer = new FileWriter("skills.txt", true)) {
                 writer.write(skill.getId() + "," + skill.getName() + "\n");
@@ -49,7 +52,7 @@ public class SkillsRepository {
     }
 
     public Skill get(long id) {
-        Skill result = new Skill(0, "No result");
+        Skill result = new Skill("No result");
         for(Skill i: skillsRepository) {
             if(i.getId() == id) {
                 return result = i;
