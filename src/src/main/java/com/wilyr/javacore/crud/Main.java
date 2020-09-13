@@ -4,7 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
         SkillsRepository skillsRepository = new SkillsRepository();
-        skillsRepository.getAll();
         Skill skill = new Skill("Maven");
         Skill skill2 = new Skill("Core");
         Skill skill3 = new Skill("SQL");
@@ -14,5 +13,7 @@ public class Main {
         skillsRepository.save(skill3);
         skillsRepository.delete(skill2);
         skillsRepository.save(skill4);
+        skill4.setName("wbwewrb");
+        skillsRepository.update(skill4);
     }
 }
