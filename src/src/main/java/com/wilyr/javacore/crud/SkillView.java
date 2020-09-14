@@ -13,19 +13,27 @@ public class SkillView {
             System.out.println("3.Update skill");
             System.out.println("4.Get skill");
             System.out.println("0.Exit");
+            System.out.print("Your choice: ");
             skillMenuNumber = in.nextInt();
             switch (skillMenuNumber) {
                 case 1:
-                    skillController.save();
+                    System.out.print("Add skill: ");
+                    skillController.save(new Skill(in.next()));
                     break;
                 case 2:
-                    skillController.delete();
+                    System.out.print("Delete skill(BY NAME): ");
+                    skillController.delete(new Skill(in.next()));
                     break;
                 case 3:
-                    skillController.update();
+                    System.out.print("Update skill(BY ID): ");
+                    Long id = in.nextLong();
+                    System.out.print("New skill name: ");
+                    String str = in.next();
+                    skillController.update(id, str);
                     break;
                 case 4:
-                    skillController.get();
+                    System.out.print("Get skill(BY ID): ");
+                    skillController.get(in.nextLong());
                     break;
             }
         } while (skillMenuNumber != 0);

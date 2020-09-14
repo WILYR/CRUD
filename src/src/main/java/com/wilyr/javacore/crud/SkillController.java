@@ -1,32 +1,32 @@
 package src.main.java.com.wilyr.javacore.crud;
 
-import java.util.Scanner;
-
 public class SkillController {
-    Scanner scanner = new Scanner(System.in);
     SkillsRepository skillsRepository = new SkillsRepository();
 
-    public void save() {
-        System.out.print("Add skill: ");
-        skillsRepository.save(new Skill(scanner.next()));
+    public void save(Skill skill) {
+        skillsRepository.save(skill);
     }
 
-    public void delete() {
-        System.out.print("Delete skill: ");
-        skillsRepository.delete(new Skill(scanner.next()));
+    public void delete(Skill skill) {
+        skillsRepository.delete(skill);
     }
 
-    public void get() {
-        System.out.print("Get skill: ");
-        System.out.println(skillsRepository.get(scanner.nextLong()));
+    public void get(Long id) {
+        if (skillsRepository.get(id) == null) {
+            System.out.println("Skill isn't exist");
+        } else {
+            System.out.println(skillsRepository.get(id).getId() + "," + skillsRepository.get(id).getName());
+        }
     }
 
-    public void update() {
-        System.out.print("Update skill(id): ");
-        Skill skillForUpdate = skillsRepository.get(scanner.nextLong());
-        System.out.print("\nNew skill name: ");
-        skillForUpdate.setName(scanner.next());
-        skillsRepository.update(skillForUpdate);
+    public void update(Long id, String str) {
+        Skill skill = skillsRepository.get(id);
+        if (skill == null) {
+            System.out.println("Skill isn't exist");
+        } else {
+            skill.setName(str);
+            skillsRepository.update(skill);
+        }
     }
 
 }

@@ -1,5 +1,5 @@
-3,Gradle
+3,jajaja
 4,Maven
-5,jwegegr
-6,sgdrg
-7,SQL
+5,Core
+6,bddfaaa
+8,jjj

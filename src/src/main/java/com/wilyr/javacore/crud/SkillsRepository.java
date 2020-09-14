@@ -5,6 +5,7 @@ import java.util.*;
 
 public class SkillsRepository {
     File file = new File("skills.txt");
+
     private List<Skill> getAll() {
         List<Skill> currentSkills = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -71,6 +72,9 @@ public class SkillsRepository {
             if (j.getName().equals(skill.getName())) {
                 removeElement = j;
             }
+        }
+        if (removeElement == null) {
+            System.out.println("Skill " + skill.getName() + " isn't exist");
         }
         currentSkills.remove(removeElement);
 
