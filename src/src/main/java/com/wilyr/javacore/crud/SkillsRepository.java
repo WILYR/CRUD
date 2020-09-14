@@ -4,10 +4,9 @@ import java.io.*;
 import java.util.*;
 
 public class SkillsRepository {
-
+    File file = new File("skills.txt");
     private List<Skill> getAll() {
-        List<Skill> skillsRepository = new ArrayList<>();
-        File file = new File("skills.txt");
+        List<Skill> currentSkills = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             if (file.length() != 0) {
                 String line = reader.readLine();
@@ -15,19 +14,19 @@ public class SkillsRepository {
                     String[] lineSplit = line.split(",");
                     Skill skill = new Skill(lineSplit[1]);
                     skill.setId(Long.parseLong(lineSplit[0]));
-                    skillsRepository.add(skill);
+                    currentSkills.add(skill);
                     line = reader.readLine();
                 }
             }
         } catch (IOException e) {
             e.getMessage();
         }
-        return skillsRepository;
+        return currentSkills;
     }
 
     private long maxId() {
         List<Long> list = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("skills.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
             while (line != null) {
                 String[] lineSplit = line.split(",");
@@ -45,9 +44,9 @@ public class SkillsRepository {
     }
 
     public Skill save(Skill skill) {
-        List<Skill> skillsRepository = new ArrayList<>(getAll());
+        List<Skill> currentSkills = new ArrayList<>(getAll());
         boolean isSkillSave = true;
-        for (Skill i : skillsRepository) {
+        for (Skill i : currentSkills) {
             if (i.getName().equals(skill.getName())) {
                 skill.setId(i.getId());
                 isSkillSave = false;
@@ -56,7 +55,7 @@ public class SkillsRepository {
         }
         if (isSkillSave) {
             skill.setId(maxId());
-            try (FileWriter writer = new FileWriter("skills.txt", true)) {
+            try (FileWriter writer = new FileWriter(file, true)) {
                 writer.write(skill.getId() + "," + skill.getName() + "\n");
             } catch (IOException e) {
                 e.getMessage();
@@ -66,17 +65,17 @@ public class SkillsRepository {
     }
 
     public void delete(Skill skill) {
-        List<Skill> skillsRepository = new ArrayList<>(getAll());
+        List<Skill> currentSkills = new ArrayList<>(getAll());
         Skill removeElement = null;
-        for (Skill j : skillsRepository) {
+        for (Skill j : currentSkills) {
             if (j.getName().equals(skill.getName())) {
                 removeElement = j;
             }
         }
-        skillsRepository.remove(removeElement);
+        currentSkills.remove(removeElement);
 
-        try (FileWriter writer = new FileWriter("skills.txt")) {
-            for (Skill i : skillsRepository) {
+        try (FileWriter writer = new FileWriter(file)) {
+            for (Skill i : currentSkills) {
                 writer.write(i.getId() + "," + i.getName() + "\n");
             }
         } catch (IOException e) {
@@ -85,8 +84,8 @@ public class SkillsRepository {
     }
 
     public Skill get(long id) {
-        List<Skill> skillsRepository = new ArrayList<>(getAll());
-        for (Skill i : skillsRepository) {
+        List<Skill> currentSkills = new ArrayList<>(getAll());
+        for (Skill i : currentSkills) {
             if (i.getId() == id) {
                 return i;
             }
@@ -95,15 +94,15 @@ public class SkillsRepository {
     }
 
     public Skill update(Skill skill) {
-        List<Skill> skillsRepository = new ArrayList<>(getAll());
-        for (Skill i : skillsRepository) {
+        List<Skill> currentSkills = new ArrayList<>(getAll());
+        for (Skill i : currentSkills) {
             if (i.getId() == skill.getId()) {
                 i.setName(skill.getName());
             }
         }
 
-        try (FileWriter writer = new FileWriter("skills.txt")) {
-            for (Skill i : skillsRepository) {
+        try (FileWriter writer = new FileWriter(file)) {
+            for (Skill i : currentSkills) {
                 writer.write(i.getId() + "," + i.getName() + "\n");
             }
         } catch (IOException e) {
