@@ -3,7 +3,7 @@ package src.main.java.com.wilyr.javacore.crud;
 import java.io.*;
 import java.util.*;
 
-public class SkillsRepository {
+public class SkillsRepository implements ISkillsRepository{
     File file = new File("skills.txt");
 
     private List<Skill> getAll() {
