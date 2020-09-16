@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountRepository {
+public class AccountRepository implements IAccountRepository{
     File file = new File("accounts.txt");
 
     private List<Account> getAll() {
@@ -14,14 +14,12 @@ public class AccountRepository {
                 String line = reader.readLine();
                 while (line != null) {
                     String[] lineSplit = line.split(",");
-                    Account account = new Account();
-                    account.setLogin(lineSplit[0]);
-                    account.setPassword(lineSplit[1]);
+                    Account account = new Account(lineSplit[0], lineSplit[1]);
                     if (lineSplit[2].equals("ACTIVE")) {
                         account.setAccountStatus(AccountStatus.ACTIVE);
                     } else if (lineSplit[2].equals("DELETED")) {
                         account.setAccountStatus(AccountStatus.DELETED);
-                    } else {
+                    } else if (lineSplit[2].equals("BANNED")) {
                         account.setAccountStatus(AccountStatus.BANNED);
                     }
                     currentAccounts.add(account);
@@ -56,7 +54,7 @@ public class AccountRepository {
         }
         if (isAccountSave) {
             try (FileWriter writer = new FileWriter(file, true)) {
-                writer.write(account.getLogin() + "," + account.getPassword()+ "," + account.getAccountStatus() + "\n");
+                writer.write(account.getLogin() + "," + account.getPassword() + "," + account.getAccountStatus() + "\n");
             } catch (IOException e) {
                 e.getMessage();
             }
@@ -74,9 +72,10 @@ public class AccountRepository {
         }
         if (removeElement == null) {
             System.out.println("Skill " + account.getLogin() + " isn't exist");
+        } else {
+            currentAccounts.remove(removeElement);
+            rewrite(currentAccounts);
         }
-        currentAccounts.remove(removeElement);
-        rewrite(currentAccounts);
     }
 
     public Account get(String login) {

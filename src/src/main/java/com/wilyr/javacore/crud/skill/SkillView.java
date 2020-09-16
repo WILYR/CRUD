@@ -1,4 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud;
+package src.main.java.com.wilyr.javacore.crud.skill;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class SkillView {
             System.out.println("2.Delete skill");
             System.out.println("3.Update skill");
             System.out.println("4.Get skill");
-            System.out.println("0.Exit");
+            System.out.println("0.Back");
             System.out.print("Your choice: ");
             skillMenuNumber = in.nextInt();
             switch (skillMenuNumber) {

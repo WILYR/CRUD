@@ -1,4 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud;
+package src.main.java.com.wilyr.javacore.crud.skill;
 
 public class SkillController {
     SkillsRepository skillsRepository = new SkillsRepository();
@@ -8,7 +8,11 @@ public class SkillController {
     }
 
     public void delete(Skill skill) {
-        skillsRepository.delete(skill);
+        if (skillsRepository.get(skill.getId()) == null) {
+            System.out.println("Skill isn't exist");
+        } else {
+            skillsRepository.delete(skill);
+        }
     }
 
     public void get(Long id) {

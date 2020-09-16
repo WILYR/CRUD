@@ -1,4 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud;
+package src.main.java.com.wilyr.javacore.crud.skill;
 
 public class Skill {
     private String name;

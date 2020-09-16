@@ -1,9 +1,9 @@
-package src.main.java.com.wilyr.javacore.crud;
+package src.main.java.com.wilyr.javacore.crud.skill;
 
 import java.io.*;
 import java.util.*;
 
-public class SkillsRepository implements ISkillsRepository{
+public class SkillsRepository implements ISkillsRepository {
     File file = new File("skills.txt");
 
     private List<Skill> getAll() {
@@ -49,7 +49,7 @@ public class SkillsRepository implements ISkillsRepository{
         boolean isSkillSave = true;
         for (Skill i : currentSkills) {
             if (i.getName().equals(skill.getName())) {
-                skill.setId(i.getId());
+                //skill.setId(i.getId());
                 isSkillSave = false;
                 break;
             }
@@ -75,8 +75,9 @@ public class SkillsRepository implements ISkillsRepository{
         }
         if (removeElement == null) {
             System.out.println("Skill " + skill.getName() + " isn't exist");
+        } else {
+            currentSkills.remove(removeElement);
         }
-        currentSkills.remove(removeElement);
 
         try (FileWriter writer = new FileWriter(file)) {
             for (Skill i : currentSkills) {

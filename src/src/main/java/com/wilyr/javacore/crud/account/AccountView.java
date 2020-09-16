@@ -1,8 +1,5 @@
 package src.main.java.com.wilyr.javacore.crud.account;
 
-import src.main.java.com.wilyr.javacore.crud.Skill;
-import src.main.java.com.wilyr.javacore.crud.SkillController;
-
 import java.util.Scanner;
 
 public class AccountView {
@@ -15,43 +12,30 @@ public class AccountView {
             System.out.println("2.Delete account");
             System.out.println("3.Update password");
             System.out.println("4.Get account");
-            System.out.println("0.Exit");
+            System.out.println("0.Back");
             System.out.print("Your choice: ");
             accountMenuNumber = in.nextInt();
             switch (accountMenuNumber) {
                 case 1:
-                    Account account = new Account();
-                    System.out.println("Add account login: ");
-                    account.setLogin(in.next());
-                    System.out.println("Add account password: ");
-                    account.setPassword(in.next());
-                    System.out.println("Add account status: ");
-                    String str = in.next();
-                    if (str.equals("ACTIVE")) {
-                        account.setAccountStatus(AccountStatus.ACTIVE);
-                    } else if (str.equals("DELETED")) {
-                        account.setAccountStatus(AccountStatus.DELETED);
-                    } else if(str.equals("BANNED")){
-                        account.setAccountStatus(AccountStatus.BANNED);
-                    } else {
-                        System.out.println("Wrong status");
-                        break;
-                    }
-                    accountController.save(account);
+                    System.out.print("Add account login: ");
+                    String login = in.next();
+                    System.out.print("Add account password: ");
+                    String password = in.next();
+                    System.out.print("Add account status: ");
+                    String accountStatus = in.next();
+                    accountController.save(login, password, accountStatus);
                     break;
                 case 2:
                     System.out.print("Delete account(BY LOGIN): ");
-                    Account accountForDelete = new Account();
-                    accountForDelete.setLogin(in.next());
-                    accountController.delete(accountForDelete);
+                    String loginForDelete = in.next();
+                    accountController.delete(loginForDelete);
                     break;
                 case 3:
                     System.out.print("Update account password(BY LOGIN): ");
-                    Account accountForUpdate = new Account();
-                    accountForUpdate.setLogin(in.next());
+                    String loginForUpdate = in.next();
                     System.out.print("New Password: ");
-                    accountForUpdate.setPassword(in.next());
-                    accountController.updatePassword(accountForUpdate);
+                    String newPassword = in.next();
+                    accountController.updatePassword(loginForUpdate, newPassword);
                     break;
                 case 4:
                     System.out.print("Get account(BY LOGIN): ");

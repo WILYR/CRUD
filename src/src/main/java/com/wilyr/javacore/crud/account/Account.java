@@ -5,6 +5,14 @@ public class Account {
     private String password;
     private AccountStatus accountStatus;
 
+    public Account(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public Account(){
+    }
+
     public String getLogin() {
         return login;
     }
