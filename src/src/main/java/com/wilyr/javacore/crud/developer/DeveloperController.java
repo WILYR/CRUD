@@ -10,7 +10,7 @@ import java.util.List;
 public class DeveloperController {
     public void save(String login, String listSkills) {
         AccountRepository accountRepository = new AccountRepository();
-        if(accountRepository.get(login) == null) {
+        if (accountRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }
@@ -28,7 +28,7 @@ public class DeveloperController {
 
     public void delete(String login) {
         DeveloperRepository developerRepository = new DeveloperRepository();
-        if(developerRepository.get(login) == null) {
+        if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }
@@ -37,7 +37,7 @@ public class DeveloperController {
 
     public void update(String login, String newSkills) {
         DeveloperRepository developerRepository = new DeveloperRepository();
-        if(developerRepository.get(login) == null) {
+        if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }
@@ -54,7 +54,7 @@ public class DeveloperController {
 
     public void get(String login) {
         DeveloperRepository developerRepository = new DeveloperRepository();
-        if(developerRepository.get(login) == null) {
+        if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }

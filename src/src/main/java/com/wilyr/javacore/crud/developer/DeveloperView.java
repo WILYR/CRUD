@@ -3,7 +3,7 @@ package src.main.java.com.wilyr.javacore.crud.developer;
 import java.util.Scanner;
 
 public class DeveloperView {
-    public void developerMenu(){
+    public void developerMenu() {
         DeveloperController developerController = new DeveloperController();
         Scanner in = new Scanner(System.in);
         int developerMenuNumber;
@@ -27,7 +27,7 @@ public class DeveloperView {
                     System.out.print("Set account login for Developer: ");
                     String loginForRemove = in.next();
                     developerController.delete(loginForRemove);
-                     break;
+                    break;
                 case 3:
                     System.out.print("Set account login for update: ");
                     String loginForUpdate = in.next();
@@ -41,6 +41,6 @@ public class DeveloperView {
                     developerController.get(loginForGet);
                     break;
             }
-        }while (developerMenuNumber != 0);
+        } while (developerMenuNumber != 0);
     }
 }

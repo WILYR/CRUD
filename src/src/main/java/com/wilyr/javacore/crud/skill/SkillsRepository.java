@@ -1,7 +1,9 @@
 package src.main.java.com.wilyr.javacore.crud.skill;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SkillsRepository implements ISkillsRepository {
     File file = new File("skills.txt");

@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeveloperRepository implements IDeveloperRepository{
+public class DeveloperRepository implements IDeveloperRepository {
     File file = new File("developers.txt");
 
     private List<Developer> getAll() {
@@ -90,7 +90,7 @@ public class DeveloperRepository implements IDeveloperRepository{
                         + "," + developer.getAccount().getAccountStatus());
                 List<Skill> skills = developer.getSkills();
                 for (Skill i : skills) {
-                    writer.write("," + i.getId() + "," + i.getName() );
+                    writer.write("," + i.getId() + "," + i.getName());
                 }
                 writer.write("\n");
             }

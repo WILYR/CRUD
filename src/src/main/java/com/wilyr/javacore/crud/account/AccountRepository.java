@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountRepository implements IAccountRepository{
+public class AccountRepository implements IAccountRepository {
     File file = new File("accounts.txt");
 
     private List<Account> getAll() {

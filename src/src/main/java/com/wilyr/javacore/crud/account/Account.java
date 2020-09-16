@@ -10,7 +10,7 @@ public class Account {
         this.password = password;
     }
 
-    public Account(){
+    public Account() {
     }
 
     public String getLogin() {
