@@ -1,4 +1,7 @@
-package src.main.java.com.wilyr.javacore.crud.skill;
+package com.wilyr.crud.view;
+
+import com.wilyr.crud.controller.SkillController;
+import com.wilyr.crud.model.Skill;
 
 import java.util.Scanner;
 

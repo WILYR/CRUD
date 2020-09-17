@@ -1,7 +1,12 @@
-package src.main.java.com.wilyr.javacore.crud.account;
+package com.wilyr.crud.controller;
+
+import com.wilyr.crud.model.Account;
+import com.wilyr.crud.model.AccountStatus;
+import com.wilyr.crud.repository.IAccountRepository;
+import com.wilyr.crud.repository.io.JavaIOAccountRepositoryImpl;
 
 public class AccountController {
-    AccountRepository accountRepository = new AccountRepository();
+    IAccountRepository accountRepository = new JavaIOAccountRepositoryImpl();
 
     public void save(String login, String password, String accountStatus) {
         Account account = new Account(login, password);

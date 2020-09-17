@@ -1,4 +1,6 @@
-package src.main.java.com.wilyr.javacore.crud.account;
+package com.wilyr.crud.view;
+
+import com.wilyr.crud.controller.AccountController;
 
 import java.util.Scanner;
 

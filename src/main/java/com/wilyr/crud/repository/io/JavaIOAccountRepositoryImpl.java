@@ -1,11 +1,15 @@
-package src.main.java.com.wilyr.javacore.crud.account;
+package com.wilyr.crud.repository.io;
+
+import com.wilyr.crud.model.Account;
+import com.wilyr.crud.model.AccountStatus;
+import com.wilyr.crud.repository.IAccountRepository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountRepository implements IAccountRepository {
-    File file = new File("accounts.txt");
+public class JavaIOAccountRepositoryImpl implements IAccountRepository {
+    File file = new File("src/main/resources/accounts.txt");
 
     private List<Account> getAll() {
         List<Account> currentAccounts = new ArrayList<>();

@@ -1,4 +1,6 @@
-package src.main.java.com.wilyr.javacore.crud.developer;
+package com.wilyr.crud.view;
+
+import com.wilyr.crud.controller.DeveloperController;
 
 import java.util.Scanner;
 

@@ -1,15 +1,17 @@
-package src.main.java.com.wilyr.javacore.crud.developer;
+package com.wilyr.crud.repository.io;
 
-import src.main.java.com.wilyr.javacore.crud.account.Account;
-import src.main.java.com.wilyr.javacore.crud.account.AccountStatus;
-import src.main.java.com.wilyr.javacore.crud.skill.Skill;
+import com.wilyr.crud.model.Account;
+import com.wilyr.crud.model.AccountStatus;
+import com.wilyr.crud.model.Developer;
+import com.wilyr.crud.model.Skill;
+import com.wilyr.crud.repository.IDeveloperRepository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeveloperRepository implements IDeveloperRepository {
-    File file = new File("developers.txt");
+public class JavaIODeveloperRepositoryImpl implements IDeveloperRepository {
+    File file = new File("src/main/resources/developers.txt");
 
     private List<Developer> getAll() {
         List<Developer> currentDevelopers = new ArrayList<>();

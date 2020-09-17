@@ -1,6 +1,6 @@
-package src.main.java.com.wilyr.javacore.crud.skill;
+package com.wilyr.crud.repository;
 
-import src.main.java.com.wilyr.javacore.crud.GenericRepository;
+import com.wilyr.crud.model.Skill;
 
 public interface ISkillsRepository extends GenericRepository {
     Skill save(Skill skill);

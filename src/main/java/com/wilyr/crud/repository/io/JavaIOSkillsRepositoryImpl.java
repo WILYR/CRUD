@@ -1,12 +1,15 @@
-package src.main.java.com.wilyr.javacore.crud.skill;
+package com.wilyr.crud.repository.io;
+
+import com.wilyr.crud.model.Skill;
+import com.wilyr.crud.repository.ISkillsRepository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SkillsRepository implements ISkillsRepository {
-    File file = new File("skills.txt");
+public class JavaIOSkillsRepositoryImpl implements ISkillsRepository {
+    File file = new File("src/main/resources/skills.txt");
 
     private List<Skill> getAll() {
         List<Skill> currentSkills = new ArrayList<>();

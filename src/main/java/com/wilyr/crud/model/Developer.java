@@ -1,7 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud.developer;
-
-import src.main.java.com.wilyr.javacore.crud.account.Account;
-import src.main.java.com.wilyr.javacore.crud.skill.Skill;
+package com.wilyr.crud.model;
 
 import java.util.List;
 

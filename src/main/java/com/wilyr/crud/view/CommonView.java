@@ -1,17 +1,13 @@
-package src.main.java.com.wilyr.javacore.crud;
-
-import src.main.java.com.wilyr.javacore.crud.account.AccountView;
-import src.main.java.com.wilyr.javacore.crud.developer.DeveloperView;
-import src.main.java.com.wilyr.javacore.crud.skill.SkillView;
+package com.wilyr.crud.view;
 
 import java.util.Scanner;
 
-public class Main {
+public class CommonView {
+    DeveloperView developerView = new DeveloperView();
+    SkillView skillView = new SkillView();
+    AccountView accountView = new AccountView();
 
-    public static void main(String[] args) {
-        DeveloperView developerView = new DeveloperView();
-        SkillView skillView = new SkillView();
-        AccountView accountView = new AccountView();
+    public void showMainMenu() {
         Scanner in = new Scanner(System.in);
         int menu;
         do {

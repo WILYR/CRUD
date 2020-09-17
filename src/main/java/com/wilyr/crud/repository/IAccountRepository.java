@@ -1,6 +1,6 @@
-package src.main.java.com.wilyr.javacore.crud.account;
+package com.wilyr.crud.repository;
 
-import src.main.java.com.wilyr.javacore.crud.GenericRepository;
+import com.wilyr.crud.model.Account;
 
 public interface IAccountRepository extends GenericRepository {
     Account save(Account account);

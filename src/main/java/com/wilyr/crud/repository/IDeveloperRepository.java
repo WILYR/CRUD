@@ -1,7 +1,7 @@
-package src.main.java.com.wilyr.javacore.crud.developer;
+package com.wilyr.crud.repository;
 
-import src.main.java.com.wilyr.javacore.crud.GenericRepository;
-import src.main.java.com.wilyr.javacore.crud.skill.Skill;
+import com.wilyr.crud.model.Developer;
+import com.wilyr.crud.model.Skill;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud.account;
+package com.wilyr.crud.model;
 
 public enum AccountStatus {
     ACTIVE,

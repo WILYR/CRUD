@@ -1,33 +1,38 @@
-package src.main.java.com.wilyr.javacore.crud.developer;
+package com.wilyr.crud.controller;
 
-import src.main.java.com.wilyr.javacore.crud.account.AccountRepository;
-import src.main.java.com.wilyr.javacore.crud.skill.Skill;
-import src.main.java.com.wilyr.javacore.crud.skill.SkillsRepository;
+import com.wilyr.crud.model.Developer;
+import com.wilyr.crud.repository.IDeveloperRepository;
+import com.wilyr.crud.repository.ISkillsRepository;
+import com.wilyr.crud.repository.io.JavaIOAccountRepositoryImpl;
+import com.wilyr.crud.model.Skill;
+import com.wilyr.crud.repository.io.JavaIODeveloperRepositoryImpl;
+import com.wilyr.crud.repository.io.JavaIOSkillsRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeveloperController {
+    IDeveloperRepository developerRepository = new JavaIODeveloperRepositoryImpl();
+    ISkillsRepository javaIOSkillsRepositoryImpl = new JavaIOSkillsRepositoryImpl();
+
     public void save(String login, String listSkills) {
-        AccountRepository accountRepository = new AccountRepository();
+        JavaIOAccountRepositoryImpl accountRepository = new JavaIOAccountRepositoryImpl();
         if (accountRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }
-        SkillsRepository skillsRepository = new SkillsRepository();
+        JavaIOSkillsRepositoryImpl javaIOSkillsRepositoryImpl = new JavaIOSkillsRepositoryImpl();
         List<Skill> skillsForSave = new ArrayList<>();
         String[] splitListSkills = listSkills.split(",");
         for (String i : splitListSkills) {
-            if (skillsRepository.get(Long.parseLong(i)) != null) ;
-            skillsForSave.add(skillsRepository.get(Long.parseLong(i)));
+            if (javaIOSkillsRepositoryImpl.get(Long.parseLong(i)) != null) ;
+            skillsForSave.add(javaIOSkillsRepositoryImpl.get(Long.parseLong(i)));
         }
         Developer developer = new Developer(skillsForSave, accountRepository.get(login));
-        DeveloperRepository developerRepository = new DeveloperRepository();
         developerRepository.save(developer);
     }
 
     public void delete(String login) {
-        DeveloperRepository developerRepository = new DeveloperRepository();
         if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
@@ -36,24 +41,21 @@ public class DeveloperController {
     }
 
     public void update(String login, String newSkills) {
-        DeveloperRepository developerRepository = new DeveloperRepository();
         if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;
         }
-        SkillsRepository skillsRepository = new SkillsRepository();
         String[] splitNewSkills = newSkills.split(",");
         List<Skill> skillsForUpdate = new ArrayList<>();
         for (String i : splitNewSkills) {
-            if (skillsRepository.get(Long.parseLong(i)) != null) {
-                skillsForUpdate.add(skillsRepository.get(Long.parseLong(i)));
+            if (javaIOSkillsRepositoryImpl.get(Long.parseLong(i)) != null) {
+                skillsForUpdate.add(javaIOSkillsRepositoryImpl.get(Long.parseLong(i)));
             }
         }
         developerRepository.update(developerRepository.get(login), skillsForUpdate);
     }
 
     public void get(String login) {
-        DeveloperRepository developerRepository = new DeveloperRepository();
         if (developerRepository.get(login) == null) {
             System.out.println("Account isn't exist");
             return;

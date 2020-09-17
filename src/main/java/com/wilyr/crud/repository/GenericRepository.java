@@ -1,4 +1,4 @@
-package src.main.java.com.wilyr.javacore.crud;
+package com.wilyr.crud.repository;
 
 public interface GenericRepository<Skill, Long> {
 }
