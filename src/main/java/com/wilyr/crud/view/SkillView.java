@@ -1,13 +1,13 @@
 package com.wilyr.crud.view;
 
-import com.wilyr.crud.controller.SkillController;
+import com.wilyr.crud.controller.jsonController.JsonSkillController;
 import com.wilyr.crud.model.Skill;
 
 import java.util.Scanner;
 
 public class SkillView {
     public void skillMenu() {
-        SkillController skillController = new SkillController();
+        JsonSkillController skillController = new JsonSkillController();
         Scanner in = new Scanner(System.in);
         int skillMenuNumber;
         do {

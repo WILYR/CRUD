@@ -1,12 +1,12 @@
 package com.wilyr.crud.view;
 
-import com.wilyr.crud.controller.DeveloperController;
+import com.wilyr.crud.controller.jsonController.JsonDeveloperController;
 
 import java.util.Scanner;
 
 public class DeveloperView {
     public void developerMenu() {
-        DeveloperController developerController = new DeveloperController();
+        JsonDeveloperController developerController = new JsonDeveloperController();
         Scanner in = new Scanner(System.in);
         int developerMenuNumber;
         do {

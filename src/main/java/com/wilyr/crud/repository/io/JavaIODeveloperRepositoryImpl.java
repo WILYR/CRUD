@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaIODeveloperRepositoryImpl implements IDeveloperRepository {
-    File file = new File("src/main/resources/developers.txt");
+    File file = new File("src/main/resources/txt/developers.txt");
 
     private List<Developer> getAll() {
         List<Developer> currentDevelopers = new ArrayList<>();

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class JavaIOSkillsRepositoryImpl implements ISkillsRepository {
-    File file = new File("src/main/resources/skills.txt");
+    File file = new File("src/main/resources/txt/skills.txt");
 
     private List<Skill> getAll() {
         List<Skill> currentSkills = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.wilyr.crud.controller;
+package com.wilyr.crud.controller.ioController;
 
 import com.wilyr.crud.model.Account;
 import com.wilyr.crud.model.AccountStatus;

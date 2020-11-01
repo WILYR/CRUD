@@ -1,10 +1,10 @@
-package com.wilyr.crud.controller;
+package com.wilyr.crud.controller.ioController;
 
 import com.wilyr.crud.model.Developer;
+import com.wilyr.crud.model.Skill;
 import com.wilyr.crud.repository.IDeveloperRepository;
 import com.wilyr.crud.repository.ISkillsRepository;
 import com.wilyr.crud.repository.io.JavaIOAccountRepositoryImpl;
-import com.wilyr.crud.model.Skill;
 import com.wilyr.crud.repository.io.JavaIODeveloperRepositoryImpl;
 import com.wilyr.crud.repository.io.JavaIOSkillsRepositoryImpl;
 

@@ -1,5 +1,7 @@
 package com.wilyr.crud.model;
 
+
+
 public class Account {
     private String login;
     private String password;

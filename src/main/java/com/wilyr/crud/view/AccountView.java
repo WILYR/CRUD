@@ -1,12 +1,12 @@
 package com.wilyr.crud.view;
 
-import com.wilyr.crud.controller.AccountController;
+import com.wilyr.crud.controller.jsonController.JsonAccountController;
 
 import java.util.Scanner;
 
 public class AccountView {
     public void accountMenu() {
-        AccountController accountController = new AccountController();
+        JsonAccountController accountController = new JsonAccountController();
         Scanner in = new Scanner(System.in);
         int accountMenuNumber;
         do {

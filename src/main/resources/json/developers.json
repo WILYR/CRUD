@@ -1,0 +1,1 @@
+[{"account":{"login":"Login","password":"Password","status":"BANNED"},"skills":[{"id":1,"name":"Name"}]},{"account":{"login":"Login2","password":"Password2","status":"ACTIVE"},"skills":[{"id":1,"name":"Name"},{"id":2,"name":"Dude"}]}]

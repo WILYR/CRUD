@@ -1,4 +1,4 @@
-package com.wilyr.crud.controller;
+package com.wilyr.crud.controller.ioController;
 
 import com.wilyr.crud.model.Skill;
 import com.wilyr.crud.repository.ISkillsRepository;
@@ -12,11 +12,7 @@ public class SkillController {
     }
 
     public void delete(Skill skill) {
-        if (javaIOSkillsRepositoryImpl.get(skill.getId()) == null) {
-            System.out.println("Skill isn't exist");
-        } else {
-            javaIOSkillsRepositoryImpl.delete(skill);
-        }
+        javaIOSkillsRepositoryImpl.delete(skill);
     }
 
     public void get(Long id) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaIOAccountRepositoryImpl implements IAccountRepository {
-    File file = new File("src/main/resources/accounts.txt");
+    File file = new File("src/main/resources/txt/accounts.txt");
 
     private List<Account> getAll() {
         List<Account> currentAccounts = new ArrayList<>();
