@@ -4,6 +4,10 @@ public class Skill {
     private String name;
     private long id;
 
+    public Skill() {
+
+    }
+
     public Skill(String name) {
         this.name = name;
     }

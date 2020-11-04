@@ -1,11 +1,11 @@
 package com.wilyr.crud.model;
 
 
-
 public class Account {
     private String login;
     private String password;
     private AccountStatus accountStatus;
+    private long id;
 
     public Account(String login, String password) {
         this.login = login;
@@ -38,4 +38,13 @@ public class Account {
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }

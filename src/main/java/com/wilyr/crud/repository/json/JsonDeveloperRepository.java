@@ -3,7 +3,6 @@ package com.wilyr.crud.repository.json;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.wilyr.crud.model.Account;
-import com.wilyr.crud.model.AccountStatus;
 import com.wilyr.crud.model.Developer;
 import com.wilyr.crud.model.Skill;
 import com.wilyr.crud.repository.IDeveloperRepository;
@@ -21,71 +20,43 @@ public class JsonDeveloperRepository implements IDeveloperRepository {
         try (JsonReader reader = new JsonReader(new BufferedReader(new FileReader(fileAccounts)))) {
             reader.setLenient(true);
             if (fileAccounts.length() != 0) {
-                String account = null, skills = null;
                 List<Skill> skillList = null;
+                long id = -1;
                 reader.beginArray();
                 while (reader.hasNext()) {
-                    String login = null, password = null;
-                    AccountStatus status = null;
                     reader.beginObject();
                     while (reader.hasNext()) {
                         String name = reader.nextName();
-                        if (name.equals("account")) {
-                            reader.beginObject();
-                            while (reader.hasNext()) {
-                                String nameAcc = reader.nextName();
-                                if (nameAcc.equals("login")) {
-                                    login = reader.nextString();
-                                } else if (nameAcc.equals("password")) {
-                                    password = reader.nextString();
-                                } else if (nameAcc.equals("status")) {
-                                    String str = reader.nextString();
-                                    if (str.equals("ACTIVE")) {
-                                        status = AccountStatus.ACTIVE;
-                                    }
-                                    if (str.equals("BANNED")) {
-                                        status = AccountStatus.BANNED;
-                                    }
-                                    if (str.equals("DELETED")) {
-                                        status = AccountStatus.DELETED;
-                                    }
-                                } else {
-                                    reader.skipValue();
-                                }
-                            }
-                            reader.endObject();
+                        if (name.equals("AccountID")) {
+                            id = reader.nextLong();
                         } else if (name.equals("skills")) {
-                            skillList = new ArrayList<>();
-                            long id = -1;
-                            String nameSkill = null;
+                            long skillID = 0;
                             reader.beginArray();
-
+                            skillList = new ArrayList<>();
                             while (reader.hasNext()) {
                                 reader.beginObject();
                                 while (reader.hasNext()) {
-                                    String nameSkl = reader.nextName();
-                                    if (nameSkl.equals("id")) {
-                                        id = reader.nextLong();
-                                    } else if (nameSkl.equals("name")) {
-                                        nameSkill = reader.nextString();
+                                    String skillname = reader.nextName();
+                                    if (skillname.equals("id")) {
+                                        skillID = reader.nextLong();
                                     } else {
                                         reader.skipValue();
                                     }
                                 }
                                 reader.endObject();
-                                Skill skill = new Skill(nameSkill);
-                                skill.setId(id);
+                                JsonSkillsRepository jsonSkillsRepository = new JsonSkillsRepository();
+                                Skill skill = jsonSkillsRepository.get(skillID);
                                 skillList.add(skill);
                             }
+
                             reader.endArray();
                         } else {
                             reader.skipValue();
                         }
                     }
                     reader.endObject();
-                    Account addAcc = new Account(login, password);
-                    addAcc.setAccountStatus(status);
-                    currentDevelopers.add(new Developer(skillList, addAcc));
+                    Account account = getAccountByID(id);
+                    currentDevelopers.add(new Developer(skillList, account));
                 }
                 reader.endArray();
             }
@@ -93,6 +64,18 @@ public class JsonDeveloperRepository implements IDeveloperRepository {
             e.printStackTrace();
         }
         return currentDevelopers;
+    }
+
+    private Account getAccountByID(long id) {
+        Account account = null;
+        JsonAccountRepository jsonAccountRepository = new JsonAccountRepository();
+        List<Account> accountList = jsonAccountRepository.getAll();
+        for (Account acc : accountList) {
+            if (acc.getId() == id) {
+                account = acc;
+            }
+        }
+        return account;
     }
 
     @Override
@@ -112,23 +95,18 @@ public class JsonDeveloperRepository implements IDeveloperRepository {
         return developer;
     }
 
+
     private void rewrite(List<Developer> developerList) {
         try (JsonWriter writer = new JsonWriter(new BufferedWriter(new FileWriter(fileAccounts, false)))) {
             writer.beginArray();
             for (Developer developer : developerList) {
                 writer.beginObject();
-                writer.name("account");
-                writer.beginObject();
-                writer.name("login").value(developer.getAccount().getLogin());
-                writer.name("password").value(developer.getAccount().getPassword());
-                writer.name("status").value(developer.getAccount().getAccountStatus().toString());
-                writer.endObject();
+                writer.name("AccountID").value(developer.getAccount().getId());
                 writer.name("skills");
                 writer.beginArray();
                 for (Skill skill : developer.getSkills()) {
                     writer.beginObject();
                     writer.name("id").value(skill.getId());
-                    writer.name("name").value(skill.getName());
                     writer.endObject();
                 }
                 writer.endArray();

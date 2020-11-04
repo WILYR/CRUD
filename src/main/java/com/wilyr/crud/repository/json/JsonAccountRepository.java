@@ -8,6 +8,7 @@ import com.wilyr.crud.repository.IAccountRepository;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class JsonAccountRepository implements IAccountRepository {
@@ -18,6 +19,7 @@ public class JsonAccountRepository implements IAccountRepository {
         try (JsonReader reader = new JsonReader(new BufferedReader(new FileReader(fileAccounts)))) {
             reader.setLenient(true);
             if (fileAccounts.length() != 0) {
+                long id = 0;
                 String login = null, password = null;
                 AccountStatus status = null;
                 reader.beginArray();
@@ -25,7 +27,9 @@ public class JsonAccountRepository implements IAccountRepository {
                     reader.beginObject();
                     while (reader.hasNext()) {
                         String name = reader.nextName();
-                        if (name.equals("login")) {
+                        if (name.equals("id")) {
+                            id = reader.nextLong();
+                        } else if (name.equals("login")) {
                             login = reader.nextString();
                         } else if (name.equals("password")) {
                             password = reader.nextString();
@@ -46,6 +50,7 @@ public class JsonAccountRepository implements IAccountRepository {
                     }
                     reader.endObject();
                     Account account = new Account(login, password);
+                    account.setId(id);
                     account.setAccountStatus(status);
                     currentAccount.add(account);
                 }
@@ -69,10 +74,24 @@ public class JsonAccountRepository implements IAccountRepository {
             }
         }
         if (isAccountSave) {
+            account.setId(lastIndex() + 1);
             accountList.add(account);
             rewrite(accountList);
         }
         return account;
+    }
+
+    private long lastIndex() {
+        long lastIndex;
+        List<Account> accountList = new LinkedList<>(getAll());
+        if (accountList.size() != 0) {
+            Account account = accountList.get(accountList.size() - 1);
+            lastIndex = account.getId();
+        } else {
+            lastIndex = 0;
+        }
+
+        return lastIndex;
     }
 
     @Override
@@ -97,6 +116,7 @@ public class JsonAccountRepository implements IAccountRepository {
             writer.beginArray();
             for (Account acc : accountList) {
                 writer.beginObject();
+                writer.name("id").value(acc.getId());
                 writer.name("login").value(acc.getLogin());
                 writer.name("password").value(acc.getPassword());
                 writer.name("status").value(acc.getAccountStatus().toString());
